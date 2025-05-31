@@ -12,7 +12,7 @@ import type {
 	BasicDictionary,
 	LokusDictionaryFile,
 	LokusTranslateFile,
-} from "lokus";
+} from "@amadeustech/lokus";
 import { useMemo, type Dispatch, type SetStateAction } from "react";
 import { Label } from "../ui/label";
 import NumberCircle from "../NumberCircle";

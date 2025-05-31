@@ -4,6 +4,7 @@
     "": {
       "name": "lokus-app",
       "dependencies": {
+        "@amadeustech/lokus": "^0.3.13",
         "@astrojs/react": "^4.3.0",
         "@radix-ui/react-label": "^2.1.7",
         "@radix-ui/react-slot": "^1.2.3",
@@ -13,7 +14,6 @@
         "astro": "^5.8.0",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
-        "lokus": "^0.3.8",
         "lucide-react": "^0.511.0",
         "react": "^19.1.0",
         "react-dom": "^19.1.0",
@@ -26,6 +26,8 @@
     },
   },
   "packages": {
+    "@amadeustech/lokus": ["@amadeustech/lokus@0.3.13", "", { "dependencies": { "zod": "^3.25.32" }, "peerDependencies": { "typescript": "^5" } }, "sha512-knVl7fERBSzvIYm3z2laUVambbOsB9i8ILU+WQ9bY8sRQKfw+GkbgCziN+PEls+i/xAc9Q8QiUikN7FWtR0BUg=="],
+
     "@ampproject/remapping": ["@ampproject/remapping@2.3.0", "", { "dependencies": { "@jridgewell/gen-mapping": "^0.3.5", "@jridgewell/trace-mapping": "^0.3.24" } }, "sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw=="],
 
     "@astrojs/compiler": ["@astrojs/compiler@2.12.0", "", {}, "sha512-7bCjW6tVDpUurQLeKBUN9tZ5kSv5qYrGmcn0sG0IwacL7isR2ZbyyA3AdZ4uxsuUFOS2SlgReTH7wkxO6zpqWA=="],
@@ -551,8 +553,6 @@
     "lightningcss-win32-arm64-msvc": ["lightningcss-win32-arm64-msvc@1.30.1", "", { "os": "win32", "cpu": "arm64" }, "sha512-mSL4rqPi4iXq5YVqzSsJgMVFENoa4nGTT/GjO2c0Yl9OuQfPsIfncvLrEW6RbbB24WtZ3xP/2CCmI3tNkNV4oA=="],
 
     "lightningcss-win32-x64-msvc": ["lightningcss-win32-x64-msvc@1.30.1", "", { "os": "win32", "cpu": "x64" }, "sha512-PVqXh48wh4T53F/1CCu8PIPCxLzWyCnn/9T5W1Jpmdy5h9Cwd+0YQS6/LwhHXSafuc61/xg9Lv5OrCby6a++jg=="],
-
-    "lokus": ["lokus@0.3.8", "", { "dependencies": { "zod": "^3.25.32" }, "peerDependencies": { "typescript": "^5" } }, "sha512-WI+B/ZV5LABq8Xnqddt0g0TiQk5s9PwcJuTcixy5L/qXvaIgbSQpZGrG9jydnY3vSBJzh3wYtC4sb1Wc+EwtDQ=="],
 
     "longest-streak": ["longest-streak@3.1.0", "", {}, "sha512-9Ri+o0JYgehTaVBBDoMqIl8GXtbWg711O3srftcHhZ0dqnETqLaoIK0x17fUw9rFSlK/0NlsKe0Ahhyl5pXE2g=="],
 

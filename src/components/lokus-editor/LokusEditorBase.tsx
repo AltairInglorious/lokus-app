@@ -13,7 +13,7 @@ import {
 	PlusIcon,
 	TrashIcon,
 } from "lucide-react";
-import type { LokusDictionaryFile } from "lokus";
+import type { LokusDictionaryFile } from "@amadeustech/lokus";
 import { useMemo, useState } from "react";
 import { Label } from "../ui/label";
 import NumberCircle from "../NumberCircle";

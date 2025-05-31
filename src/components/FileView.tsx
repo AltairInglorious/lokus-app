@@ -2,7 +2,10 @@ import { useState } from "react";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
-import { LokusDictionarySchema, type LokusDictionaryFile } from "lokus";
+import {
+	LokusDictionarySchema,
+	type LokusDictionaryFile,
+} from "@amadeustech/lokus";
 import LokusEditor from "./lokus-editor/LokusEditor";
 import NumberCircle from "./NumberCircle";
 import type { LokusDictionaryType } from "@/lokus/config";

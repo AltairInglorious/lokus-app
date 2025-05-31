@@ -1,4 +1,4 @@
-import type { LokusDictionaryFile } from "lokus";
+import type { LokusDictionaryFile } from "@amadeustech/lokus";
 import { useState } from "react";
 import { Button } from "../ui/button";
 import NumberCircle from "../NumberCircle";
