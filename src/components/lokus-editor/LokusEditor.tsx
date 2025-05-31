@@ -29,7 +29,8 @@ export default function LokusEditor({ fileName, lokusDictionary }: Props) {
 		<section className="space-y-2">
 			<div className="border rounded p-2">
 				Base language: {lokusDictionary.baseLanguage} <br />
-				Timestamp: {new Date(lokusDictionary.timestamp).toLocaleString()} <br />
+				Last change: {new Date(lokusDictionary.timestamp).toLocaleString()}{" "}
+				<br />
 			</div>
 			{!selectedLanguage && (
 				<div className="flex items-center gap-2">
