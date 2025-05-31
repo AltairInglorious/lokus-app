@@ -1,6 +1,3 @@
-import type { LokusDictionaryFile } from "lokus";
-import { useMemo, useState } from "react";
-import { Button } from "./ui/button";
 import {
 	Table,
 	TableBody,
@@ -8,22 +5,32 @@ import {
 	TableHead,
 	TableHeader,
 	TableRow,
-} from "./ui/table";
-import { Input } from "./ui/input";
+} from "../ui/table";
+import { Input } from "../ui/input";
 import { ArrowDownToLine, SaveIcon } from "lucide-react";
-import NumberCircle from "./NumberCircle";
-import { Label } from "./ui/label";
+import type { BasicDictionary, LokusDictionaryFile } from "lokus";
+import { useMemo, type Dispatch, type SetStateAction } from "react";
+import { Label } from "../ui/label";
+import NumberCircle from "../NumberCircle";
+import { Button } from "../ui/button";
 
 type Props = {
-	fileName: string;
+	selectedLanguage: string;
 	lokusDictionary: LokusDictionaryFile;
+	newTranslation: Record<string, Partial<BasicDictionary>>;
+	setNewTranslation: Dispatch<
+		SetStateAction<Record<string, Partial<BasicDictionary>>>
+	>;
+	fileName: string;
 };
 
-export default function LokusEditor({ fileName, lokusDictionary }: Props) {
-	const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
-	const [newTranslation, setNewTranslation] = useState(
-		lokusDictionary.dictionaries,
-	);
+export default function LokusEditorTranslation({
+	selectedLanguage,
+	lokusDictionary,
+	newTranslation,
+	setNewTranslation,
+	fileName,
+}: Props) {
 	const wasChanged = useMemo(() => {
 		for (const lang in lokusDictionary.dictionaries) {
 			const originalDict = lokusDictionary.dictionaries[lang];
@@ -63,30 +70,7 @@ export default function LokusEditor({ fileName, lokusDictionary }: Props) {
 	}
 
 	return (
-		<section className="space-y-2">
-			<div className="border rounded p-2">
-				Base language: {lokusDictionary.baseLanguage} <br />
-				Timestamp: {new Date(lokusDictionary.timestamp).toLocaleString()} <br />
-			</div>
-			<div className="flex items-center gap-2">
-				<NumberCircle>2</NumberCircle>
-				<Label>Select language to translate</Label>
-				<ul className="flex flex-wrap gap-2">
-					{Object.keys(lokusDictionary.dictionaries).map((lang) => (
-						<li key={lang}>
-							<Button
-								variant={selectedLanguage === lang ? "default" : "secondary"}
-								type="button"
-								onClick={() => {
-									setSelectedLanguage((p) => (p === lang ? null : lang));
-								}}
-							>
-								{lang}
-							</Button>
-						</li>
-					))}
-				</ul>
-			</div>
+		<>
 			<div className="flex items-center gap-2">
 				<NumberCircle>3</NumberCircle>
 				<Label>Write translations to third column</Label>
@@ -143,6 +127,6 @@ export default function LokusEditor({ fileName, lokusDictionary }: Props) {
 						))}
 				</TableBody>
 			</Table>
-		</section>
+		</>
 	);
 }

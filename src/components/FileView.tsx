@@ -3,7 +3,7 @@ import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
 import { LokusDictionarySchema, type LokusDictionaryFile } from "lokus";
-import LokusEditor from "./LokusEditor";
+import LokusEditor from "./lokus-editor/LokusEditor";
 import NumberCircle from "./NumberCircle";
 
 export default function FileView() {

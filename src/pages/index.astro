@@ -1,8 +1,31 @@
 ---
-import FileView from "@/components/FileView";
 import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout>
-	<FileView client:load />
+	<main class="w-screen h-screen flex flex-col items-center justify-center">
+		<div class="text-center max-w-2xl">
+			<h1
+				class="text-3xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl"
+			>
+				Lokus &mdash; universal translation software
+			</h1>
+			<p
+				class="mt-4 text-md font-medium text-pretty text-gray-500 sm:text-lg/8"
+			>
+				Lokus is a universal localization format and a set of powerful
+				tools designed to simplify and speed up the translation of
+				various applications. It enables collaborative translation into
+				multiple languages at once and integrates seamlessly into modern
+				development workflows.
+			</p>
+			<div class="mt-5 flex items-center justify-center gap-x-6">
+				<a
+					href="/editor"
+					class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+					>Get started</a
+				>
+			</div>
+		</div>
+	</main>
 </Layout>
