@@ -7,7 +7,7 @@ import {
 	TableRow,
 } from "../ui/table";
 import { Input } from "../ui/input";
-import { ArrowDownToLine, SaveIcon } from "lucide-react";
+import { ArrowDownToLineIcon, SaveIcon } from "lucide-react";
 import type { BasicDictionary, LokusDictionaryFile } from "lokus";
 import { useMemo, type Dispatch, type SetStateAction } from "react";
 import { Label } from "../ui/label";
@@ -22,6 +22,7 @@ type Props = {
 		SetStateAction<Record<string, Partial<BasicDictionary>>>
 	>;
 	fileName: string;
+	selectLanguage(lang: string | null): void;
 };
 
 export default function LokusEditorTranslation({
@@ -30,6 +31,7 @@ export default function LokusEditorTranslation({
 	newTranslation,
 	setNewTranslation,
 	fileName,
+	selectLanguage,
 }: Props) {
 	const wasChanged = useMemo(() => {
 		for (const lang in lokusDictionary.dictionaries) {
@@ -72,13 +74,45 @@ export default function LokusEditorTranslation({
 	return (
 		<>
 			<div className="flex items-center gap-2">
+				<NumberCircle>2</NumberCircle>
+				<Label>Select language to translate</Label>
+				<ul className="flex flex-wrap gap-2">
+					{!wasChanged && (
+						<li>
+							<Button
+								variant="secondary"
+								type="button"
+								onClick={() => {
+									selectLanguage(lokusDictionary.baseLanguage);
+								}}
+							>
+								Base ({lokusDictionary.baseLanguage})
+							</Button>
+						</li>
+					)}
+					{Object.keys(lokusDictionary.dictionaries).map((lang) => (
+						<li key={lang}>
+							<Button
+								variant={selectedLanguage === lang ? "default" : "secondary"}
+								type="button"
+								onClick={() => {
+									selectLanguage(lang);
+								}}
+							>
+								{lang}
+							</Button>
+						</li>
+					))}
+				</ul>
+			</div>
+			<div className="flex items-center gap-2">
 				<NumberCircle>3</NumberCircle>
 				<Label>Write translations to third column</Label>
 			</div>
 			<div className="flex items-center gap-2">
 				<NumberCircle>4</NumberCircle>
 				<Button disabled={!wasChanged} onClick={downloadNewDictionary}>
-					<ArrowDownToLine /> Download new dictionary
+					<ArrowDownToLineIcon /> Download new dictionary
 				</Button>
 			</div>
 			<Table className="table-fixed border">
