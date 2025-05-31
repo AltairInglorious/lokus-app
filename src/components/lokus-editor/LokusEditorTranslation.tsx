@@ -8,7 +8,11 @@ import {
 } from "../ui/table";
 import { Input } from "../ui/input";
 import { ArrowDownToLineIcon, SaveIcon } from "lucide-react";
-import type { BasicDictionary, LokusDictionaryFile } from "lokus";
+import type {
+	BasicDictionary,
+	LokusDictionaryFile,
+	LokusTranslateFile,
+} from "lokus";
 import { useMemo, type Dispatch, type SetStateAction } from "react";
 import { Label } from "../ui/label";
 import NumberCircle from "../NumberCircle";
@@ -50,6 +54,26 @@ export default function LokusEditorTranslation({
 		return false;
 	}, [newTranslation, lokusDictionary.dictionaries, lokusDictionary.base]);
 
+	const wasChangedSelectedLanguage = useMemo(() => {
+		const originalDict = lokusDictionary.dictionaries[selectedLanguage];
+		const newDict = newTranslation[selectedLanguage];
+		const dictionaryKeys = Object.keys(lokusDictionary.base);
+
+		for (const id of dictionaryKeys) {
+			const a = originalDict[id] || "";
+			const b = newDict?.[id] || "";
+			if (a !== b) {
+				return true;
+			}
+		}
+		return false;
+	}, [
+		newTranslation,
+		lokusDictionary.dictionaries,
+		lokusDictionary.base,
+		selectedLanguage,
+	]);
+
 	function downloadNewDictionary() {
 		const newDict: LokusDictionaryFile = {
 			type: "dictionary",
@@ -66,6 +90,26 @@ export default function LokusEditorTranslation({
 		const a = document.createElement("a");
 		a.href = url;
 		a.download = fileName;
+		a.click();
+
+		URL.revokeObjectURL(url);
+	}
+
+	function downloadTranslationOnly() {
+		const newDict: LokusTranslateFile = {
+			type: "translate",
+			language: selectedLanguage,
+			dictionary: newTranslation[selectedLanguage] || {},
+			timestamp: Date.now(),
+		};
+
+		const data = JSON.stringify(newDict, null, 2);
+		const blob = new Blob([data], { type: "application/json" });
+		const url = URL.createObjectURL(blob);
+
+		const a = document.createElement("a");
+		a.href = url;
+		a.download = `${selectedLanguage}-${fileName}`;
 		a.click();
 
 		URL.revokeObjectURL(url);
@@ -113,6 +157,13 @@ export default function LokusEditorTranslation({
 				<NumberCircle>4</NumberCircle>
 				<Button disabled={!wasChanged} onClick={downloadNewDictionary}>
 					<ArrowDownToLineIcon /> Download new dictionary
+				</Button>
+				<span className="text-gray-500">- or -</span>
+				<Button
+					disabled={!wasChanged || !wasChangedSelectedLanguage}
+					onClick={downloadTranslationOnly}
+				>
+					<ArrowDownToLineIcon /> Download {selectedLanguage} translation only
 				</Button>
 			</div>
 			<Table className="table-fixed border">
