@@ -6,6 +6,7 @@ import { Image } from "astro:assets";
 import lokusIcon from "@/assets/lokus.svg";
 import { getLokusLanguage, getLokusDictionary } from "@/lokus/config";
 import { getAbsoluteLocaleUrl } from "astro:i18n";
+import Footer from "../Footer.astro";
 
 const dictionary = getLokusDictionary(getLokusLanguage(Astro.currentLocale));
 ---
@@ -36,4 +37,5 @@ const dictionary = getLokusDictionary(getLokusLanguage(Astro.currentLocale));
     <Main>
         <FileView dictionary={dictionary} client:load />
     </Main>
+    <Footer />
 </Layout>
