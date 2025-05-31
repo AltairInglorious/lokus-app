@@ -19,17 +19,20 @@ import { Label } from "../ui/label";
 import NumberCircle from "../NumberCircle";
 import { Button } from "../ui/button";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
+import type { LokusDictionaryType } from "@/lokus/config";
 
 type Props = {
 	lokusDictionary: LokusDictionaryFile;
 	fileName: string;
 	selectLanguage(lang: string | null): void;
+	dictionary: LokusDictionaryType;
 };
 
 export default function LokusEditorBase({
 	lokusDictionary,
 	fileName,
 	selectLanguage,
+	dictionary,
 }: Props) {
 	const [newDictionary, setNewDictionary] = useState(lokusDictionary.base);
 
@@ -82,7 +85,7 @@ export default function LokusEditorBase({
 		<>
 			<div className="flex items-center gap-2">
 				<NumberCircle>2</NumberCircle>
-				<Label>Select language to translate</Label>
+				<Label>{dictionary["editor.select-language"]}</Label>
 				<ul className="flex flex-wrap gap-2">
 					<li>
 						<Button
@@ -92,7 +95,8 @@ export default function LokusEditorBase({
 								selectLanguage(lokusDictionary.baseLanguage);
 							}}
 						>
-							Base ({lokusDictionary.baseLanguage})
+							{dictionary["editor.base-language"]} (
+							{lokusDictionary.baseLanguage})
 						</Button>
 					</li>
 					{!wasChanged &&
@@ -113,12 +117,12 @@ export default function LokusEditorBase({
 			</div>
 			<div className="flex items-center gap-2">
 				<NumberCircle>3</NumberCircle>
-				<Label>Write translations to third column</Label>
+				<Label>{dictionary["editor.write-3"]}</Label>
 			</div>
 			<div className="flex items-center gap-2">
 				<NumberCircle>4</NumberCircle>
 				<Button disabled={!wasChanged} onClick={downloadNewDictionary}>
-					<ArrowDownToLineIcon /> Download new dictionary
+					<ArrowDownToLineIcon /> {dictionary["editor.download-dictionary"]}
 				</Button>
 			</div>
 			<Table className="table-fixed border">

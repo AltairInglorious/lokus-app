@@ -1,0 +1,32 @@
+---
+import FileView from "@/components/FileView";
+import Layout from "@/layouts/Layout.astro";
+import Main from "@/layouts/Main.astro";
+import { Image } from "astro:assets";
+import lokusIcon from "@/assets/lokus.svg";
+import { getLanguage, getLokusDictionary } from "@/lokus/config";
+
+const dictionary = getLokusDictionary(getLanguage(Astro.currentLocale));
+---
+
+<Layout>
+    <header class="w-full flex justify-between p-4 bg-slate-50">
+        <a href="/" class="flex items-center gap-2 font-bold">
+            <Image
+                src={lokusIcon}
+                alt="Lokus icon"
+                width={32}
+                height={32}
+                class="rounded-full"
+            />
+            {dictionary["editor.title"]}
+        </a>
+        <nav class="flex justify-center gap-4">
+            <a class="p-1 font-bold" href="/">{dictionary["editor.nav.home"]}</a
+            >
+        </nav>
+    </header>
+    <Main>
+        <FileView dictionary={dictionary} client:load />
+    </Main>
+</Layout>

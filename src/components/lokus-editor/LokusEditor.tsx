@@ -5,13 +5,19 @@ import NumberCircle from "../NumberCircle";
 import { Label } from "../ui/label";
 import LokusEditorTranslation from "./LokusEditorTranslation";
 import LokusEditorBase from "./LokusEditorBase";
+import type { LokusDictionaryType } from "@/lokus/config";
 
 type Props = {
 	fileName: string;
 	lokusDictionary: LokusDictionaryFile;
+	dictionary: LokusDictionaryType;
 };
 
-export default function LokusEditor({ fileName, lokusDictionary }: Props) {
+export default function LokusEditor({
+	fileName,
+	lokusDictionary,
+	dictionary,
+}: Props) {
 	const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
 	const [newTranslation, setNewTranslation] = useState(
 		lokusDictionary.dictionaries,
@@ -28,14 +34,15 @@ export default function LokusEditor({ fileName, lokusDictionary }: Props) {
 	return (
 		<section className="space-y-2">
 			<div className="border rounded p-2">
-				Base language: {lokusDictionary.baseLanguage} <br />
-				Last change: {new Date(lokusDictionary.timestamp).toLocaleString()}{" "}
+				{dictionary["editor.base-language"]}: {lokusDictionary.baseLanguage}{" "}
 				<br />
+				{dictionary["editor.last-change"]}:{" "}
+				{new Date(lokusDictionary.timestamp).toLocaleString()} <br />
 			</div>
 			{!selectedLanguage && (
 				<div className="flex items-center gap-2">
 					<NumberCircle>2</NumberCircle>
-					<Label>Select language to translate</Label>
+					<Label>{dictionary["editor.select-language"]}</Label>
 					<ul className="flex flex-wrap gap-2">
 						<li>
 							<Button
@@ -49,7 +56,8 @@ export default function LokusEditor({ fileName, lokusDictionary }: Props) {
 									selectLanguage(lokusDictionary.baseLanguage);
 								}}
 							>
-								Base ({lokusDictionary.baseLanguage})
+								{dictionary["editor.base-language"]} (
+								{lokusDictionary.baseLanguage})
 							</Button>
 						</li>
 						{Object.keys(lokusDictionary.dictionaries).map((lang) => (
@@ -74,6 +82,7 @@ export default function LokusEditor({ fileName, lokusDictionary }: Props) {
 						lokusDictionary={lokusDictionary}
 						fileName={fileName}
 						selectLanguage={selectLanguage}
+						dictionary={dictionary}
 					/>
 				) : (
 					<LokusEditorTranslation
@@ -83,6 +92,7 @@ export default function LokusEditor({ fileName, lokusDictionary }: Props) {
 						setNewTranslation={setNewTranslation}
 						fileName={fileName}
 						selectLanguage={selectLanguage}
+						dictionary={dictionary}
 					/>
 				))}
 		</section>

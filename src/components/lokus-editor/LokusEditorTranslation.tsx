@@ -17,6 +17,7 @@ import { useMemo, type Dispatch, type SetStateAction } from "react";
 import { Label } from "../ui/label";
 import NumberCircle from "../NumberCircle";
 import { Button } from "../ui/button";
+import type { LokusDictionaryType } from "@/lokus/config";
 
 type Props = {
 	selectedLanguage: string;
@@ -27,6 +28,7 @@ type Props = {
 	>;
 	fileName: string;
 	selectLanguage(lang: string | null): void;
+	dictionary: LokusDictionaryType;
 };
 
 export default function LokusEditorTranslation({
@@ -36,6 +38,7 @@ export default function LokusEditorTranslation({
 	setNewTranslation,
 	fileName,
 	selectLanguage,
+	dictionary,
 }: Props) {
 	const wasChanged = useMemo(() => {
 		for (const lang in lokusDictionary.dictionaries) {
@@ -119,7 +122,7 @@ export default function LokusEditorTranslation({
 		<>
 			<div className="flex items-center gap-2">
 				<NumberCircle>2</NumberCircle>
-				<Label>Select language to translate</Label>
+				<Label>{dictionary["editor.select-language"]}</Label>
 				<ul className="flex flex-wrap gap-2">
 					{!wasChanged && (
 						<li>
@@ -130,7 +133,8 @@ export default function LokusEditorTranslation({
 									selectLanguage(lokusDictionary.baseLanguage);
 								}}
 							>
-								Base ({lokusDictionary.baseLanguage})
+								{dictionary["editor.base-language"]} (
+								{lokusDictionary.baseLanguage})
 							</Button>
 						</li>
 					)}
@@ -151,19 +155,20 @@ export default function LokusEditorTranslation({
 			</div>
 			<div className="flex items-center gap-2">
 				<NumberCircle>3</NumberCircle>
-				<Label>Write translations to third column</Label>
+				<Label>{dictionary["editor.write-3"]}</Label>
 			</div>
 			<div className="flex items-center gap-2">
 				<NumberCircle>4</NumberCircle>
 				<Button disabled={!wasChanged} onClick={downloadNewDictionary}>
-					<ArrowDownToLineIcon /> Download new dictionary
+					<ArrowDownToLineIcon /> {dictionary["editor.download-dictionary"]}
 				</Button>
 				<span className="text-gray-500">- or -</span>
 				<Button
 					disabled={!wasChanged || !wasChangedSelectedLanguage}
 					onClick={downloadTranslationOnly}
 				>
-					<ArrowDownToLineIcon /> Download {selectedLanguage} translation only
+					<ArrowDownToLineIcon /> {dictionary["editor.download-translate"]} (
+					{selectedLanguage})
 				</Button>
 			</div>
 			<Table className="table-fixed border">

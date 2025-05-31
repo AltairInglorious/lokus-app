@@ -5,8 +5,13 @@ import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
 import { LokusDictionarySchema, type LokusDictionaryFile } from "lokus";
 import LokusEditor from "./lokus-editor/LokusEditor";
 import NumberCircle from "./NumberCircle";
+import type { LokusDictionaryType } from "@/lokus/config";
 
-export default function FileView() {
+type Props = {
+	dictionary: LokusDictionaryType;
+};
+
+export default function FileView({ dictionary }: Props) {
 	const [fileName, setFileName] = useState<string | null>(null);
 	const [data, setData] = useState<LokusDictionaryFile | null>(null);
 	const [error, setError] = useState<string | null>(null);
@@ -36,9 +41,7 @@ export default function FileView() {
 								} catch (e) {
 									console.error("Error parsing file:", e);
 									setData(null);
-									setError(
-										"Invalid file format. Please upload a valid lokus file.",
-									);
+									setError(dictionary["editor.invalid-file-message"]);
 								}
 							};
 							reader.readAsText(file);
@@ -48,12 +51,16 @@ export default function FileView() {
 			</div>
 			{error && (
 				<Alert variant="destructive">
-					<AlertTitle>Invalid file</AlertTitle>
+					<AlertTitle>{dictionary["editor.invalid-file"]}</AlertTitle>
 					<AlertDescription>{error}</AlertDescription>
 				</Alert>
 			)}
 			{fileName && data && (
-				<LokusEditor fileName={fileName} lokusDictionary={data} />
+				<LokusEditor
+					fileName={fileName}
+					lokusDictionary={data}
+					dictionary={dictionary}
+				/>
 			)}
 		</div>
 	);
