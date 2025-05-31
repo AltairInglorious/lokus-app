@@ -12,3 +12,4 @@ development workflows.
 - [ ] Implement all utils from lokus library
 - [ ] Add documentation and specification of lokus format
 - [ ] Add links to repositories
+- [ ] Feature: add translation for new language
