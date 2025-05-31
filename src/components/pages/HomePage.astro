@@ -1,8 +1,8 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { getLanguage, getLokusDictionary } from "@/lokus/config";
+import { getLokusLanguage, getLokusDictionary } from "@/lokus/config";
 
-const dictionary = getLokusDictionary(getLanguage(Astro.currentLocale));
+const dictionary = getLokusDictionary(getLokusLanguage(Astro.currentLocale));
 ---
 
 <Layout>

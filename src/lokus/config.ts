@@ -65,11 +65,11 @@ export type LokusDictionaryType = Record<
 	string
 >;
 
-export function getLanguage(
-	lang?: string,
-):
+export type LokusLanguageType =
 	| keyof typeof LokusDictionary.dictionaries
-	| typeof LokusDictionary.baseLanguage {
+	| typeof LokusDictionary.baseLanguage;
+
+export function getLokusLanguage(lang?: string): LokusLanguageType {
 	if (!lang) return LokusDictionary.baseLanguage;
 	if (lang in LokusDictionary.dictionaries) {
 		return lang as keyof typeof LokusDictionary.dictionaries;
@@ -78,9 +78,7 @@ export function getLanguage(
 }
 
 export function getLokusDictionary(
-	language:
-		| keyof typeof LokusDictionary.dictionaries
-		| typeof LokusDictionary.baseLanguage,
+	language: LokusLanguageType,
 ): LokusDictionaryType {
 	if (language === LokusDictionary.baseLanguage) return LokusDictionary.base;
 	return {
