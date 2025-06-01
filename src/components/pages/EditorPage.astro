@@ -37,5 +37,5 @@ const dictionary = getLokusDictionary(getLokusLanguage(Astro.currentLocale));
     <Main>
         <FileView dictionary={dictionary} client:load />
     </Main>
-    <Footer />
+    <Footer pathname="/editor" />
 </Layout>
