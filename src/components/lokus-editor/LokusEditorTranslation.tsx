@@ -18,6 +18,7 @@ import { Label } from "../ui/label";
 import NumberCircle from "../NumberCircle";
 import { Button } from "../ui/button";
 import type { LokusDictionaryType } from "@/lokus/config";
+import { Textarea } from "../ui/textarea";
 
 type Props = {
 	selectedLanguage: string;
@@ -171,52 +172,75 @@ export default function LokusEditorTranslation({
 					{selectedLanguage})
 				</Button>
 			</div>
-			<Table className="table-fixed border">
-				<TableHeader>
-					<TableRow>
-						<TableHead>ID</TableHead>
-						<TableHead>Base</TableHead>
-						{selectedLanguage && (
+			<div>
+				<Table className="table-fixed border">
+					<TableHeader>
+						<TableRow>
+							<TableHead>ID</TableHead>
+							<TableHead>Base</TableHead>
 							<TableHead>Variant on {selectedLanguage}</TableHead>
-						)}
-					</TableRow>
-				</TableHeader>
-				<TableBody>
-					{Object.entries(lokusDictionary.base)
-						.sort((a, b) => a[0].localeCompare(b[0]))
-						.map(([id, base]) => (
-							<TableRow key={id}>
-								<TableCell>{id}</TableCell>
-								<TableCell>{base}</TableCell>
-								{selectedLanguage && (
-									<TableCell>
-										<div className="flex items-center gap-2">
-											<Input
-												placeholder={base}
-												value={newTranslation[selectedLanguage]?.[id] || ""}
-												onChange={(e) => {
-													setNewTranslation((prev) => ({
-														...prev,
-														[selectedLanguage]: {
-															...prev[selectedLanguage],
-															[id]: e.target.value,
-														},
-													}));
-												}}
-											/>
-											{(lokusDictionary.dictionaries?.[selectedLanguage]?.[
-												id
-											] || "") !==
-												(newTranslation[selectedLanguage]?.[id] || "") && (
-												<SaveIcon />
-											)}
-										</div>
-									</TableCell>
-								)}
-							</TableRow>
-						))}
-				</TableBody>
-			</Table>
+						</TableRow>
+					</TableHeader>
+				</Table>
+				<div className="overflow-y-auto max-h-[500px]">
+					<Table className="table-fixed border-x border-b">
+						<TableBody>
+							{Object.entries(lokusDictionary.base)
+								.sort((a, b) => a[0].localeCompare(b[0]))
+								.sort((a, b) => {
+									if (!newTranslation[selectedLanguage]?.[a[0]]) return -1;
+									if (!newTranslation[selectedLanguage]?.[b[0]]) return 1;
+									return 0;
+								})
+								.map(([id, base]) => (
+									<TableRow key={id}>
+										<TableCell>{id}</TableCell>
+										<TableCell className="whitespace-normal">{base}</TableCell>
+										<TableCell className="whitespace-normal">
+											<div className="flex items-center gap-2">
+												{base.length > 60 ? (
+													<Textarea
+														placeholder={base}
+														value={newTranslation[selectedLanguage]?.[id] || ""}
+														onChange={(e) => {
+															setNewTranslation((prev) => ({
+																...prev,
+																[selectedLanguage]: {
+																	...prev[selectedLanguage],
+																	[id]: e.target.value,
+																},
+															}));
+														}}
+													/>
+												) : (
+													<Input
+														placeholder={base}
+														value={newTranslation[selectedLanguage]?.[id] || ""}
+														onChange={(e) => {
+															setNewTranslation((prev) => ({
+																...prev,
+																[selectedLanguage]: {
+																	...prev[selectedLanguage],
+																	[id]: e.target.value,
+																},
+															}));
+														}}
+													/>
+												)}
+												{(lokusDictionary.dictionaries?.[selectedLanguage]?.[
+													id
+												] || "") !==
+													(newTranslation[selectedLanguage]?.[id] || "") && (
+													<SaveIcon />
+												)}
+											</div>
+										</TableCell>
+									</TableRow>
+								))}
+						</TableBody>
+					</Table>
+				</div>
+			</div>
 		</>
 	);
 }

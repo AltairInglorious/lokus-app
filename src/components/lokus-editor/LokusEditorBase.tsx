@@ -20,6 +20,7 @@ import NumberCircle from "../NumberCircle";
 import { Button } from "../ui/button";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 import type { LokusDictionaryType } from "@/lokus/config";
+import { Textarea } from "../ui/textarea";
 
 type Props = {
 	lokusDictionary: LokusDictionaryFile;
@@ -117,7 +118,7 @@ export default function LokusEditorBase({
 			</div>
 			<div className="flex items-center gap-2">
 				<NumberCircle>3</NumberCircle>
-				<Label>{dictionary["editor.write-3"]}</Label>
+				<Label>{dictionary["editor.modify-dictionary"]}</Label>
 			</div>
 			<div className="flex items-center gap-2">
 				<NumberCircle>4</NumberCircle>
@@ -125,87 +126,97 @@ export default function LokusEditorBase({
 					<ArrowDownToLineIcon /> {dictionary["editor.download-dictionary"]}
 				</Button>
 			</div>
-			<Table className="table-fixed border">
-				<TableHeader>
-					<TableRow>
-						<TableHead>ID</TableHead>
-						<TableHead>Base</TableHead>
-						<TableHead>Actions</TableHead>
-					</TableRow>
-				</TableHeader>
-				<TableBody>
-					{Object.entries(newDictionary)
-						.sort((a, b) => a[0].localeCompare(b[0]))
-						.map(([id, base]) => (
-							<TableRow key={id}>
-								<TableCell>{id}</TableCell>
-								<TableCell>{base}</TableCell>
-								<TableCell>
-									<Button
-										variant="destructive"
-										size="icon"
-										onClick={() => {
-											setNewDictionary((prev) => {
-												const newDict = { ...prev };
-												delete newDict[id];
-												return newDict;
-											});
-										}}
-									>
-										<TrashIcon />
-									</Button>
-								</TableCell>
-							</TableRow>
-						))}
-					<TableRow>
-						<TableCell>
-							<Input
-								type="text"
-								placeholder="New record ID"
-								value={newRecordID}
-								onChange={(e) => {
-									const newId = e.target.value.trim();
-									setNewRecordID(newId);
-								}}
-							/>
-						</TableCell>
-						<TableCell>
-							<Input
-								type="text"
-								placeholder="New record translation"
-								value={newRecordValue}
-								onChange={(e) => {
-									setNewRecordValue(e.target.value);
-								}}
-							/>
-						</TableCell>
-						<TableCell>
-							<Button
-								disabled={
-									!newRecordID ||
-									!newRecordValue ||
-									newRecordIDNotUnique ||
-									newRecordID === "" ||
-									newRecordValue === ""
-								}
-								size="icon"
-								onClick={() => {
-									if (newRecordID && newRecordValue) {
-										setNewDictionary((prev) => ({
-											...prev,
-											[newRecordID]: newRecordValue,
-										}));
-										setNewRecordID("");
-										setNewRecordValue("");
+			<div>
+				<Table className="table-fixed border">
+					<TableHeader>
+						<TableRow>
+							<TableHead>ID</TableHead>
+							<TableHead>Base</TableHead>
+							<TableHead>Actions</TableHead>
+						</TableRow>
+					</TableHeader>
+				</Table>
+				<div className="overflow-y-auto max-h-[500px]">
+					<Table className="table-fixed border-x">
+						<TableBody>
+							{Object.entries(newDictionary)
+								.sort((a, b) => a[0].localeCompare(b[0]))
+								.map(([id, base]) => (
+									<TableRow key={id}>
+										<TableCell>{id}</TableCell>
+										<TableCell className="whitespace-normal">{base}</TableCell>
+										<TableCell>
+											<Button
+												variant="destructive"
+												size="icon"
+												onClick={() => {
+													setNewDictionary((prev) => {
+														const newDict = { ...prev };
+														delete newDict[id];
+														return newDict;
+													});
+												}}
+											>
+												<TrashIcon />
+											</Button>
+										</TableCell>
+									</TableRow>
+								))}
+						</TableBody>
+					</Table>
+				</div>
+				<Table className="table-fixed border">
+					<TableBody>
+						<TableRow>
+							<TableCell>
+								<Input
+									type="text"
+									placeholder="New record ID"
+									value={newRecordID}
+									onChange={(e) => {
+										const newId = e.target.value.trim();
+										setNewRecordID(newId);
+									}}
+								/>
+							</TableCell>
+							<TableCell>
+								<Textarea
+									placeholder="New record translation"
+									value={newRecordValue}
+									onChange={(e) => {
+										setNewRecordValue(e.target.value);
+									}}
+								/>
+							</TableCell>
+							<TableCell>
+								<Button
+									disabled={
+										!newRecordID ||
+										!newRecordValue ||
+										newRecordIDNotUnique ||
+										newRecordID === "" ||
+										newRecordValue === ""
 									}
-								}}
-							>
-								<PlusIcon />
-							</Button>
-						</TableCell>
-					</TableRow>
-				</TableBody>
-			</Table>
+									size="icon"
+									onClick={() => {
+										if (newRecordID && newRecordValue) {
+											setNewDictionary((prev) => ({
+												...prev,
+												[newRecordID]: newRecordValue,
+											}));
+											setNewRecordID("");
+											setNewRecordValue("");
+										}
+									}}
+								>
+									<PlusIcon />
+								</Button>
+							</TableCell>
+						</TableRow>
+					</TableBody>
+				</Table>
+			</div>
+
 			{newRecordIDNotUnique && (
 				<Alert variant="destructive">
 					<CircleAlertIcon className="mr-2" />

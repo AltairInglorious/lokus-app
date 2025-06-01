@@ -1,5 +1,5 @@
 import type { LokusDictionaryFile } from "@amadeustech/lokus";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import NumberCircle from "../NumberCircle";
 import { Label } from "../ui/label";
