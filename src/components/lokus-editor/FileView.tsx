@@ -1,14 +1,14 @@
-import { useState } from "react";
-import {
-	LokusDictionarySchema,
-	type LokusDictionaryFile,
-} from "@amadeustech/lokus";
-import LokusEditor from "./LokusEditor";
-import type { LokusDictionaryType } from "@/lokus/config";
 import NumberCircle from "@/components/NumberCircle";
-import { Label } from "@/components/ui/label";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Input } from "@/components/ui/input";
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { Label } from "@/components/ui/label";
+import type { LokusDictionaryType } from "@/lokus/config";
+import {
+	type LokusDictionaryFile,
+	LokusDictionarySchema,
+} from "@amadeustech/lokus";
+import { useState } from "react";
+import LokusEditor from "./LokusEditor";
 
 type Props = {
 	dictionary: LokusDictionaryType;

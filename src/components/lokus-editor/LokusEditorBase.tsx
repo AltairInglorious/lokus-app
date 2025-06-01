@@ -1,3 +1,17 @@
+import type { LokusDictionaryType } from "@/lokus/config";
+import type { LokusDictionaryFile } from "@amadeustech/lokus";
+import {
+	ArrowDownToLineIcon,
+	CircleAlertIcon,
+	PlusIcon,
+	TrashIcon,
+} from "lucide-react";
+import { useMemo, useState } from "react";
+import NumberCircle from "../NumberCircle";
+import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
 import {
 	Table,
 	TableBody,
@@ -6,20 +20,6 @@ import {
 	TableHeader,
 	TableRow,
 } from "../ui/table";
-import { Input } from "../ui/input";
-import {
-	ArrowDownToLineIcon,
-	CircleAlertIcon,
-	PlusIcon,
-	TrashIcon,
-} from "lucide-react";
-import type { LokusDictionaryFile } from "@amadeustech/lokus";
-import { useMemo, useState } from "react";
-import { Label } from "../ui/label";
-import NumberCircle from "../NumberCircle";
-import { Button } from "../ui/button";
-import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
-import type { LokusDictionaryType } from "@/lokus/config";
 import { Textarea } from "../ui/textarea";
 
 type Props = {

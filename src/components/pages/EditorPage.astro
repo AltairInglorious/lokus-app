@@ -1,12 +1,5 @@
 ---
-import FileView from "@/components/lokus-editor/FileView";
-import Layout from "@/layouts/Layout.astro";
-import Main from "@/layouts/Main.astro";
-import { Image } from "astro:assets";
-import lokusIcon from "@/assets/lokus.svg";
-import { getLokusLanguage, getLokusDictionary } from "@/lokus/config";
-import { getAbsoluteLocaleUrl } from "astro:i18n";
-import Footer from "../Footer.astro";
+import { getLokusDictionary, getLokusLanguage } from "@/lokus/config";
 
 const dictionary = getLokusDictionary(getLokusLanguage(Astro.currentLocale));
 ---

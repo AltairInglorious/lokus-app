@@ -5,72 +5,85 @@ export const LokusDictionary = {
 	timestamp: 1748773008592,
 	base: {
 		"landing.title": "Lokus — universal translation software",
-		"landing.description": "Lokus is a universal localization format and a set of powerful tools designed to simplify and speed up the translation of various applications. It enables collaborative translation into multiple languages at once and integrates seamlessly into modern development workflows.",
+		"landing.description":
+			"Lokus is a universal localization format and a set of powerful tools designed to simplify and speed up the translation of various applications. It enables collaborative translation into multiple languages at once and integrates seamlessly into modern development workflows.",
 		"landing.cta-button": "Get started",
 		"editor.title": "Lokus Editor",
 		"editor.nav.home": "Home",
 		"editor.invalid-file": "Invalid file",
-		"editor.invalid-file-message": "Invalid file format. Please upload a valid lokus file.",
+		"editor.invalid-file-message":
+			"Invalid file format. Please upload a valid lokus file.",
 		"editor.base-language": "Base language",
 		"editor.last-change": "Last change",
 		"editor.select-language": "Select language to translate",
 		"editor.write-3": "Write translations to third column",
 		"editor.download-dictionary": "Download new dictionary",
 		"editor.download-translate": "Download translation only",
-		"editor.modify-dictionary": "Add new record using bottom form or delete existing with button in third column",
+		"editor.modify-dictionary":
+			"Add new record using bottom form or delete existing with button in third column",
 		"editor.load-lokus-file": "Load a lokus file",
 		"editor.loaded": "Loaded",
 		"editor.duplicate-id.title": "Duplicate ID",
-		"editor.duplicate-id.description": "The ID you entered already exists in the dictionary. Please use a unique ID.",
+		"editor.duplicate-id.description":
+			"The ID you entered already exists in the dictionary. Please use a unique ID.",
 		"editor.or": "or",
 	},
 	dictionaries: {
-		"ru": {
-			"landing.title": "Lokus — универсальное программное обеспечение для перевода",
-			"landing.description": "Lokus — это универсальный формат локализации и набор мощных инструментов, предназначенных для упрощения и ускорения перевода различных приложений. Он позволяет совместно переводить на несколько языков одновременно и бесшовно интегрируется в современные рабочие процессы разработки.",
+		ru: {
+			"landing.title":
+				"Lokus — универсальное программное обеспечение для перевода",
+			"landing.description":
+				"Lokus — это универсальный формат локализации и набор мощных инструментов, предназначенных для упрощения и ускорения перевода различных приложений. Он позволяет совместно переводить на несколько языков одновременно и бесшовно интегрируется в современные рабочие процессы разработки.",
 			"landing.cta-button": "Начать",
 			"editor.title": "Редактор Lokus",
 			"editor.nav.home": "Главная",
 			"editor.invalid-file": "Неверный файл",
-			"editor.invalid-file-message": "Неверный формат файла. Пожалуйста, загрузите корректный файл lokus.",
+			"editor.invalid-file-message":
+				"Неверный формат файла. Пожалуйста, загрузите корректный файл lokus.",
 			"editor.base-language": "Базовый язык",
 			"editor.last-change": "Последнее изменение",
 			"editor.select-language": "Выберите язык для перевода",
 			"editor.write-3": "Запишите переводы в третий столбец",
 			"editor.download-dictionary": "Скачать новый словарь",
 			"editor.download-translate": "Скачать только перевод",
-			"editor.modify-dictionary": "Добавите новую запись используя форму ниже или удалите существующую используя кнопку в 3 колонке",
+			"editor.modify-dictionary":
+				"Добавите новую запись используя форму ниже или удалите существующую используя кнопку в 3 колонке",
 			"editor.load-lokus-file": "Загрузить файл lokus",
 			"editor.loaded": "Загружено",
 			"editor.duplicate-id.title": "Дублирующийся ID",
-			"editor.duplicate-id.description": "Введенный вами ID уже существует в словаре. Пожалуйста, используйте уникальный ID.",
+			"editor.duplicate-id.description":
+				"Введенный вами ID уже существует в словаре. Пожалуйста, используйте уникальный ID.",
 			"editor.or": "или",
 		},
-		"uk": {
-			"landing.title": "Lokus — універсальне програмне забезпечення для перекладу",
-			"landing.description": "Lokus — це універсальний формат локалізації та набір потужних інструментів, призначених для спрощення та прискорення перекладу різних додатків. Він дозволяє спільно перекладати на кілька мов одночасно та безшовно інтегрується в сучасні робочі процеси розробки.",
+		uk: {
+			"landing.title":
+				"Lokus — універсальне програмне забезпечення для перекладу",
+			"landing.description":
+				"Lokus — це універсальний формат локалізації та набір потужних інструментів, призначених для спрощення та прискорення перекладу різних додатків. Він дозволяє спільно перекладати на кілька мов одночасно та безшовно інтегрується в сучасні робочі процеси розробки.",
 			"landing.cta-button": "Почати",
 			"editor.title": "Редактор Lokus",
 			"editor.nav.home": "Головна",
 			"editor.invalid-file": "Неправильний файл",
-			"editor.invalid-file-message": "Неправильний формат файлу. Будь ласка, завантажте коректний файл lokus.",
+			"editor.invalid-file-message":
+				"Неправильний формат файлу. Будь ласка, завантажте коректний файл lokus.",
 			"editor.base-language": "Базова мова",
 			"editor.last-change": "Остання зміна",
 			"editor.select-language": "Виберіть мову для перекладу",
 			"editor.write-3": "Запишіть переклади в третій стовпець",
 			"editor.download-dictionary": "Завантажити новий словник",
 			"editor.download-translate": "Завантажити лише переклад",
-			"editor.modify-dictionary": "Додайте новий запис використовуючи форму внизу або видаліть існуючий кнопкою в третьому стовпчику",
+			"editor.modify-dictionary":
+				"Додайте новий запис використовуючи форму внизу або видаліть існуючий кнопкою в третьому стовпчику",
 			"editor.load-lokus-file": "Завантажити файл lokus",
 			"editor.loaded": "Завантажено",
 			"editor.duplicate-id.title": "Дубльований ID",
-			"editor.duplicate-id.description": "Введений вами ID вже існує в словнику. Будь ласка, використовуйте унікальний ID.",
+			"editor.duplicate-id.description":
+				"Введений вами ID вже існує в словнику. Будь ласка, використовуйте унікальний ID.",
 			"editor.or": "або",
 		},
 	},
 } as const;
 
-	
 export type LokusDictionaryType = Record<
 	keyof typeof LokusDictionary.base,
 	string

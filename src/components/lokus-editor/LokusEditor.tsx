@@ -1,11 +1,11 @@
-import type { LokusDictionaryFile } from "@amadeustech/lokus";
-import { useEffect, useState } from "react";
-import { Button } from "../ui/button";
-import NumberCircle from "../NumberCircle";
-import { Label } from "../ui/label";
-import LokusEditorTranslation from "./LokusEditorTranslation";
-import LokusEditorBase from "./LokusEditorBase";
 import type { LokusDictionaryType } from "@/lokus/config";
+import type { LokusDictionaryFile } from "@amadeustech/lokus";
+import { useState } from "react";
+import NumberCircle from "../NumberCircle";
+import { Button } from "../ui/button";
+import { Label } from "../ui/label";
+import LokusEditorBase from "./LokusEditorBase";
+import LokusEditorTranslation from "./LokusEditorTranslation";
 
 type Props = {
 	fileName: string;

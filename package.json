@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "lint": "bunx biome check --write ./src"
   },
   "dependencies": {
     "@amadeustech/lokus": "^0.3.13",
@@ -26,6 +27,7 @@
     "tailwindcss": "^4.1.7"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "tw-animate-css": "^1.3.0"
   }
 }
