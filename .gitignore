@@ -24,4 +24,4 @@ pnpm-debug.log*
 .idea/
 
 # deploy scripts
-push.sh
+deploy.sh
