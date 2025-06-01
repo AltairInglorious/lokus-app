@@ -8,7 +8,7 @@ development workflows.
 
 ## TODO
 
-- [ ] Implement i18n on app with lokus
+- [x] Implement i18n on app with lokus
 - [ ] Implement all utils from lokus library
 - [ ] Add documentation and specification of lokus format
 - [ ] Add links to repositories
