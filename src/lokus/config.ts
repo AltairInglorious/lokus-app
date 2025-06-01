@@ -2,7 +2,7 @@
 export const LokusDictionary = {
 	type: "dictionary",
 	baseLanguage: "en",
-	timestamp: 1748767980201,
+	timestamp: 1748773008592,
 	base: {
 		"landing.title": "Lokus — universal translation software",
 		"landing.description": "Lokus is a universal localization format and a set of powerful tools designed to simplify and speed up the translation of various applications. It enables collaborative translation into multiple languages at once and integrates seamlessly into modern development workflows.",
@@ -18,6 +18,11 @@ export const LokusDictionary = {
 		"editor.download-dictionary": "Download new dictionary",
 		"editor.download-translate": "Download translation only",
 		"editor.modify-dictionary": "Add new record using bottom form or delete existing with button in third column",
+		"editor.load-lokus-file": "Load a lokus file",
+		"editor.loaded": "Loaded",
+		"editor.duplicate-id.title": "Duplicate ID",
+		"editor.duplicate-id.description": "The ID you entered already exists in the dictionary. Please use a unique ID.",
+		"editor.or": "or",
 	},
 	dictionaries: {
 		"ru": {
@@ -35,6 +40,11 @@ export const LokusDictionary = {
 			"editor.download-dictionary": "Скачать новый словарь",
 			"editor.download-translate": "Скачать только перевод",
 			"editor.modify-dictionary": "Добавите новую запись используя форму ниже или удалите существующую используя кнопку в 3 колонке",
+			"editor.load-lokus-file": "Загрузить файл lokus",
+			"editor.loaded": "Загружено",
+			"editor.duplicate-id.title": "Дублирующийся ID",
+			"editor.duplicate-id.description": "Введенный вами ID уже существует в словаре. Пожалуйста, используйте уникальный ID.",
+			"editor.or": "или",
 		},
 		"uk": {
 			"landing.title": "Lokus — універсальне програмне забезпечення для перекладу",
@@ -51,6 +61,11 @@ export const LokusDictionary = {
 			"editor.download-dictionary": "Завантажити новий словник",
 			"editor.download-translate": "Завантажити лише переклад",
 			"editor.modify-dictionary": "Додайте новий запис використовуючи форму внизу або видаліть існуючий кнопкою в третьому стовпчику",
+			"editor.load-lokus-file": "Завантажити файл lokus",
+			"editor.loaded": "Завантажено",
+			"editor.duplicate-id.title": "Дубльований ID",
+			"editor.duplicate-id.description": "Введений вами ID вже існує в словнику. Будь ласка, використовуйте унікальний ID.",
+			"editor.or": "або",
 		},
 	},
 } as const;

@@ -163,7 +163,7 @@ export default function LokusEditorTranslation({
 				<Button disabled={!wasChanged} onClick={downloadNewDictionary}>
 					<ArrowDownToLineIcon /> {dictionary["editor.download-dictionary"]}
 				</Button>
-				<span className="text-gray-500">- or -</span>
+				<span className="text-gray-500">- {dictionary["editor.or"]} -</span>
 				<Button
 					disabled={!wasChanged || !wasChangedSelectedLanguage}
 					onClick={downloadTranslationOnly}

@@ -220,10 +220,9 @@ export default function LokusEditorBase({
 			{newRecordIDNotUnique && (
 				<Alert variant="destructive">
 					<CircleAlertIcon className="mr-2" />
-					<AlertTitle>Duplicate ID</AlertTitle>
+					<AlertTitle>{dictionary["editor.duplicate-id.title"]}</AlertTitle>
 					<AlertDescription>
-						The ID you entered already exists in the dictionary. Please use a
-						unique ID.
+						{dictionary["editor.duplicate-id.description"]}
 					</AlertDescription>
 				</Alert>
 			)}
