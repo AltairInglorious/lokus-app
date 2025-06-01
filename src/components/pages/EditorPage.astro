@@ -1,5 +1,12 @@
 ---
+import Layout from "@/layouts/Layout.astro";
 import { getLokusDictionary, getLokusLanguage } from "@/lokus/config";
+import { Image } from "astro:assets";
+import { getAbsoluteLocaleUrl } from "astro:i18n";
+import lokusIcon from "@/assets/lokus.svg";
+import Main from "@/layouts/Main.astro";
+import FileView from "../lokus-editor/FileView";
+import Footer from "../Footer.astro";
 
 const dictionary = getLokusDictionary(getLokusLanguage(Astro.currentLocale));
 ---

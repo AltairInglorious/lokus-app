@@ -1,5 +1,8 @@
 ---
 import { getLokusDictionary, getLokusLanguage } from "@/lokus/config";
+import { getAbsoluteLocaleUrl } from "astro:i18n";
+import Footer from "../Footer.astro";
+import Layout from "@/layouts/Layout.astro";
 
 const dictionary = getLokusDictionary(getLokusLanguage(Astro.currentLocale));
 ---
