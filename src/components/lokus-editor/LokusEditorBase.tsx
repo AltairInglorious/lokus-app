@@ -1,3 +1,4 @@
+import { clearLokusDictionaries } from "@/lib/lokus";
 import type { LokusDictionaryType } from "@/lokus/config";
 import type { BasicDictionary, LokusDictionaryFile } from "@amadeustech/lokus";
 import {
@@ -71,7 +72,7 @@ export default function LokusEditorBase({
 			type: "dictionary",
 			baseLanguage: lokusDictionary.baseLanguage,
 			base: newDictionary,
-			dictionaries: lokusDictionary.dictionaries,
+			dictionaries: clearLokusDictionaries(lokusDictionary.dictionaries),
 			timestamp: Date.now(),
 		};
 

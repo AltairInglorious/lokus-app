@@ -1,3 +1,7 @@
+import {
+	clearLokusDictionaries,
+	clearPartialLokusDictionary,
+} from "@/lib/lokus";
 import type { LokusDictionaryType } from "@/lokus/config";
 import type {
 	BasicDictionary,
@@ -89,7 +93,7 @@ export default function LokusEditorTranslation({
 			type: "dictionary",
 			baseLanguage: lokusDictionary.baseLanguage,
 			base: lokusDictionary.base,
-			dictionaries: newTranslation,
+			dictionaries: clearLokusDictionaries(newTranslation),
 			timestamp: Date.now(),
 		};
 
@@ -109,7 +113,8 @@ export default function LokusEditorTranslation({
 		const newDict: LokusTranslateFile = {
 			type: "translate",
 			language: selectedLanguage,
-			dictionary: newTranslation[selectedLanguage] || {},
+			dictionary:
+				clearPartialLokusDictionary(newTranslation[selectedLanguage]) || {},
 			timestamp: Date.now(),
 		};
 
