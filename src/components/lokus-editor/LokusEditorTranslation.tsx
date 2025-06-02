@@ -19,6 +19,7 @@ import {
 	TableRow,
 } from "../ui/table";
 import { Textarea } from "../ui/textarea";
+import LokusFileInfo from "./LokusFileInfo";
 
 type Props = {
 	selectedLanguage: string;
@@ -30,6 +31,7 @@ type Props = {
 	fileName: string;
 	selectLanguage(lang: string | null): void;
 	dictionary: LokusDictionaryType;
+	addLanguage(lang: string): void;
 };
 
 export default function LokusEditorTranslation({
@@ -40,9 +42,13 @@ export default function LokusEditorTranslation({
 	fileName,
 	selectLanguage,
 	dictionary,
+	addLanguage,
 }: Props) {
 	const wasChanged = useMemo(() => {
-		for (const lang in lokusDictionary.dictionaries) {
+		for (const lang in newTranslation) {
+			if (!lokusDictionary.dictionaries[lang]) {
+				return true;
+			}
 			const originalDict = lokusDictionary.dictionaries[lang];
 			const newDict = newTranslation[lang];
 			const dictionaryKeys = Object.keys(lokusDictionary.base);
@@ -59,7 +65,7 @@ export default function LokusEditorTranslation({
 	}, [newTranslation, lokusDictionary.dictionaries, lokusDictionary.base]);
 
 	const wasChangedSelectedLanguage = useMemo(() => {
-		const originalDict = lokusDictionary.dictionaries[selectedLanguage];
+		const originalDict = lokusDictionary.dictionaries?.[selectedLanguage] || {};
 		const newDict = newTranslation[selectedLanguage];
 		const dictionaryKeys = Object.keys(lokusDictionary.base);
 
@@ -121,39 +127,15 @@ export default function LokusEditorTranslation({
 
 	return (
 		<>
-			<div className="flex items-center gap-2">
-				<NumberCircle>2</NumberCircle>
-				<Label>{dictionary["editor.select-language"]}</Label>
-				<ul className="flex flex-wrap gap-2">
-					{!wasChanged && (
-						<li>
-							<Button
-								variant="secondary"
-								type="button"
-								onClick={() => {
-									selectLanguage(lokusDictionary.baseLanguage);
-								}}
-							>
-								{dictionary["editor.base-language"]} (
-								{lokusDictionary.baseLanguage})
-							</Button>
-						</li>
-					)}
-					{Object.keys(lokusDictionary.dictionaries).map((lang) => (
-						<li key={lang}>
-							<Button
-								variant={selectedLanguage === lang ? "default" : "secondary"}
-								type="button"
-								onClick={() => {
-									selectLanguage(lang);
-								}}
-							>
-								{lang}
-							</Button>
-						</li>
-					))}
-				</ul>
-			</div>
+			<LokusFileInfo
+				dictionary={dictionary}
+				lokusDictionary={lokusDictionary}
+				selectedLanguage={selectedLanguage}
+				selectLanguage={selectLanguage}
+				lockLanguage={wasChanged}
+				addLanguage={addLanguage}
+				languages={Object.keys(newTranslation)}
+			/>
 			<div className="flex items-center gap-2">
 				<NumberCircle>3</NumberCircle>
 				<Label>{dictionary["editor.write-3"]}</Label>

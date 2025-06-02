@@ -1,5 +1,5 @@
 import type { LokusDictionaryType } from "@/lokus/config";
-import type { LokusDictionaryFile } from "@amadeustech/lokus";
+import type { BasicDictionary, LokusDictionaryFile } from "@amadeustech/lokus";
 import {
 	ArrowDownToLineIcon,
 	CircleAlertIcon,
@@ -21,12 +21,15 @@ import {
 	TableRow,
 } from "../ui/table";
 import { Textarea } from "../ui/textarea";
+import LokusFileInfo from "./LokusFileInfo";
 
 type Props = {
 	lokusDictionary: LokusDictionaryFile;
 	fileName: string;
 	selectLanguage(lang: string | null): void;
 	dictionary: LokusDictionaryType;
+	addLanguage(lang: string): void;
+	newTranslation: Record<string, Partial<BasicDictionary>>;
 };
 
 export default function LokusEditorBase({
@@ -34,6 +37,8 @@ export default function LokusEditorBase({
 	fileName,
 	selectLanguage,
 	dictionary,
+	addLanguage,
+	newTranslation,
 }: Props) {
 	const [newDictionary, setNewDictionary] = useState(lokusDictionary.base);
 
@@ -84,38 +89,15 @@ export default function LokusEditorBase({
 
 	return (
 		<>
-			<div className="flex items-center gap-2">
-				<NumberCircle>2</NumberCircle>
-				<Label>{dictionary["editor.select-language"]}</Label>
-				<ul className="flex flex-wrap gap-2">
-					<li>
-						<Button
-							variant="default"
-							type="button"
-							onClick={() => {
-								selectLanguage(lokusDictionary.baseLanguage);
-							}}
-						>
-							{dictionary["editor.base-language"]} (
-							{lokusDictionary.baseLanguage})
-						</Button>
-					</li>
-					{!wasChanged &&
-						Object.keys(lokusDictionary.dictionaries).map((lang) => (
-							<li key={lang}>
-								<Button
-									variant="secondary"
-									type="button"
-									onClick={() => {
-										selectLanguage(lang);
-									}}
-								>
-									{lang}
-								</Button>
-							</li>
-						))}
-				</ul>
-			</div>
+			<LokusFileInfo
+				dictionary={dictionary}
+				lokusDictionary={lokusDictionary}
+				selectedLanguage={lokusDictionary.baseLanguage}
+				selectLanguage={selectLanguage}
+				lockLanguage={wasChanged}
+				addLanguage={addLanguage}
+				languages={Object.keys(newTranslation)}
+			/>
 			<div className="flex items-center gap-2">
 				<NumberCircle>3</NumberCircle>
 				<Label>{dictionary["editor.modify-dictionary"]}</Label>
