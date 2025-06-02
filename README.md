@@ -12,4 +12,5 @@ development workflows.
 - [ ] Implement all utils from lokus library
 - [ ] Add documentation and specification of lokus format
 - [ ] Add links to repositories
-- [ ] Feature: add translation for new language
+- [x] Feature: add translation for new language
+- [ ] Refactor dictionary editing, allow multiple operation (editing base and dictionaries)
